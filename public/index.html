@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="bucket">
+	<head>
+		<title>MAKE MY NOTE</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script type="text/javascript" src="angular-base64-upload.js"></script>
+		<script src="controller.js"></script>
+		
+	</head>
+	<body ng-controller="bucketController">
+		<div class="container row body" >
+			<center><span class="h2 heading">PHOTO BUCKET</span></center><br>
+		<hr/>
+		<input type="file" ng-model="file" name="file" base-sixty-four-input required maxsize="75" accept="image/*">
+		<br/>
+		<div class="input-group" >
+				<input class="form-control" type="text" name="note" id="note" ng-model="label" placeholder="Add Label">
+				<span class = "input-group-btn">
+					<button class="btn btn-default" ng-click="addphoto()">Create</button>
+				</span>
+		</div>
+		<div ng-show="error" >
+			<br />
+			<center><span class="h3" style="color:red">Please select image of size less than 75KB</span></center>
+			<br/>
+		</div>
+	
+	<center>
+	<div ng-repeat="image in imagelist" class="item">
+		<div class="h4 label">{{image.label}}</div>
+		<img class="img-responsive image-item" data-ng-src="data:image/png;base64,{{image.photo}}" />
+	</div>
+	</center>
+	
+	</body>
+</html>
